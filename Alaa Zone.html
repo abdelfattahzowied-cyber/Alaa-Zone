@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#071522">
+<title>ALAA ZONE — رحلة الذكاء الاصطناعي</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap');
+:root{
+ --bg:#071522;--surface:#0d2030;--surface2:#122b3d;--surface3:#19384b;
+ --cyan:#42d7e8;--blue:#4e8dff;--mint:#50d6b0;--violet:#a18aff;
+ --amber:#f3c66d;--rose:#ff8e91;--white:#f3f8fc;--muted:#9bb1c1;
+ --border:rgba(169,211,231,.14);--shadow:0 20px 55px #0005;
+}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 12% 0%,#12465a66,transparent 34%),radial-gradient(ellipse at 95% 18%,#4d3b7650,transparent 28%),var(--bg);color:var(--white);font-family:Cairo,Tahoma,sans-serif;min-height:100vh}
+button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+.shell{max-width:1320px;margin:auto;padding:18px 22px 50px}
+.top{height:70px;display:flex;align-items:center;justify-content:space-between;gap:18px;border-bottom:1px solid var(--border);margin-bottom:22px}
+.brand{display:flex;align-items:center;gap:12px}.brand-mark{width:45px;height:45px;border-radius:15px;background:linear-gradient(135deg,var(--cyan),var(--blue));display:grid;place-items:center;color:#061522;font-weight:900;font-size:23px;box-shadow:0 0 25px #42d7e844}.brand strong{font-size:20px;letter-spacing:1px}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:2px;margin-top:-4px}
+.top-right{display:flex;align-items:center;gap:10px}.pill{border:1px solid var(--border);background:#10283a;padding:8px 13px;border-radius:13px;font-size:13px;font-weight:800;white-space:nowrap}.pill b{color:var(--amber);margin-right:4px}.avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(140deg,#2f8797,#8b80e9);display:grid;place-items:center;font-size:20px}
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:20px}
+.sidebar{background:#0c1e2c;border:1px solid var(--border);border-radius:22px;padding:14px;height:fit-content;position:sticky;top:14px}
+.profile{padding:13px 10px 18px;border-bottom:1px solid var(--border);display:flex;gap:10px;align-items:center}.profile .face{width:42px;height:42px;background:#193c50;border-radius:14px;display:grid;place-items:center;font-size:22px}.profile b{display:block;font-size:13px}.profile small{color:var(--muted);font-size:11px}
+.nav{display:grid;gap:6px;margin-top:13px}.nav button{border:0;background:transparent;color:var(--muted);text-align:right;padding:12px;border-radius:12px;font-weight:700;display:flex;align-items:center;gap:11px}.nav button.active,.nav button:hover{background:#18384b;color:var(--white)}.nav button.active{box-shadow:inset -3px 0 var(--cyan)}.nav .ico{font-size:18px;width:24px;text-align:center}
+.content{min-width:0}.view{display:none;animation:fade .3s ease}.view.active{display:block}@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.welcome{display:flex;justify-content:space-between;align-items:center;gap:20px;background:linear-gradient(115deg,#123348,#172b49 65%,#28365a);border:1px solid #4bc8d333;border-radius:24px;padding:25px 30px;position:relative;overflow:hidden;min-height:190px}
+.welcome:after{content:"";position:absolute;width:300px;height:300px;border:1px solid #54d8e822;border-radius:50%;left:-70px;top:-120px;box-shadow:0 0 0 25px #54d8e809,0 0 0 55px #54d8e806}
+.welcome-copy{position:relative;z-index:1}.tag{font-size:11px;color:var(--cyan);font-weight:800;letter-spacing:1px}.welcome h1{font-size:clamp(25px,3vw,36px);line-height:1.35;margin:7px 0}.welcome p{color:#c0d2df;margin:0;font-size:13px;max-width:520px;line-height:1.9}
+.guide{position:relative;z-index:1;display:flex;align-items:center;gap:12px;min-width:205px}.guide-bot{width:86px;height:92px;border-radius:26px;background:linear-gradient(145deg,#d8fbff,#58b7ca 55%,#628dff);display:grid;place-items:center;color:#102b43;font-size:44px;box-shadow:0 12px 35px #0005;transform:rotate(-5deg)}.guide-speech{background:#f1f8fc;color:#13283a;border-radius:16px 16px 4px 16px;padding:10px 13px;font-size:12px;font-weight:800;max-width:130px;line-height:1.7}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:17px 0}.metric{padding:15px 17px;border:1px solid var(--border);border-radius:17px;background:linear-gradient(145deg,#10283a,#0d2030);min-width:0}.metric .metric-top{display:flex;justify-content:space-between;color:var(--muted);font-size:11px}.metric strong{display:block;font-size:23px;margin-top:5px}.metric .symbol{font-size:19px}
+.section-title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:25px 0 13px}.section-title h2{font-size:19px;margin:0}.section-title p{font-size:11px;color:var(--muted);margin:3px 0 0}.text-btn{background:none;border:0;color:var(--cyan);font-size:12px;font-weight:800}
+.continue-card{background:linear-gradient(110deg,#123747,#17334a);border:1px solid #42d7e833;border-radius:19px;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:15px}.continue-info{display:flex;align-items:center;gap:14px}.continue-icon{width:51px;height:51px;border-radius:16px;background:#42d7e81a;color:var(--cyan);display:grid;place-items:center;font-size:24px}.continue-card h3{margin:0;font-size:14px}.continue-card p{margin:3px 0 0;color:var(--muted);font-size:11px}
+.btn{border:0;border-radius:12px;padding:11px 17px;font-weight:900;font-size:12px;transition:.2s}.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}.primary{background:linear-gradient(110deg,var(--cyan),#9cece0);color:#06202b}.secondary{background:#ffffff0c;color:var(--white);border:1px solid var(--border)}.amber{background:linear-gradient(110deg,#e8b957,#ffdfa0);color:#34250a}.danger{background:#ff8e9118;color:#ffaaaa;border:1px solid #ff8e9144}
+.worlds{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.world{border:1px solid var(--border);border-radius:19px;background:#102638;overflow:hidden;transition:.2s}.world:hover{transform:translateY(-3px);border-color:#42d7e866}.world-banner{height:100px;position:relative;padding:16px;display:flex;align-items:flex-start;justify-content:space-between;overflow:hidden}.world-banner:after{content:"";position:absolute;width:170px;height:170px;border:1px solid #ffffff25;border-radius:50%;left:20px;top:-100px;box-shadow:0 0 0 18px #ffffff08,0 0 0 38px #ffffff06}.world-number{font-size:11px;font-weight:900;letter-spacing:1px;color:#ffffffbd}.world-symbol{font-size:34px;filter:drop-shadow(0 8px 10px #0003)}.world-body{padding:14px 16px 16px}.world-body h3{font-size:15px;margin:0}.world-body p{font-size:11px;color:var(--muted);margin:4px 0 13px}.world-bottom{display:flex;align-items:center;justify-content:space-between;gap:10px}.world-bottom small{color:var(--muted);font-size:10px}
+.path-wrap{background:linear-gradient(180deg,#10293a,#0c1e2c);border:1px solid var(--border);border-radius:22px;padding:22px}.path-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:20px}.path-head h2{font-size:20px;margin:0}.path-head p{font-size:11px;color:var(--muted);margin:3px 0 0}
+.path{max-width:650px;margin:10px auto;display:flex;flex-direction:column;align-items:center;position:relative}.path:before{content:"";position:absolute;top:35px;bottom:40px;right:50%;width:4px;background:repeating-linear-gradient(to bottom,#31576b 0 10px,transparent 10px 18px);transform:translateX(50%)}
+.path-node{position:relative;z-index:1;width:100%;display:flex;align-items:center;gap:15px;margin:10px 0;max-width:500px}.node-button{width:67px;height:67px;flex-shrink:0;border-radius:23px;border:4px solid #284b5e;background:linear-gradient(145deg,#1a3c50,#102839);color:var(--white);font-size:25px;box-shadow:0 7px 0 #07131d;transition:.2s}.node-button.current{border-color:var(--cyan);background:linear-gradient(145deg,#2b8290,#24557d);box-shadow:0 7px 0 #0a2433,0 0 25px #42d7e844}.node-button.done{border-color:var(--mint);background:linear-gradient(145deg,#247c69,#145548)}.node-button:disabled{opacity:.45;filter:grayscale(.5);cursor:not-allowed}.node-info{background:#142d40;border:1px solid var(--border);border-radius:14px;padding:10px 14px;flex:1}.node-info b{font-size:12px;display:block}.node-info small{font-size:10px;color:var(--muted)}
+.lesson-card{background:linear-gradient(145deg,#112c3e,#0c2030);border:1px solid var(--border);border-radius:22px;padding:clamp(18px,4vw,32px);max-width:850px;margin:auto}.lesson-meta{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-bottom:12px}.bar{height:6px;background:#ffffff12;border-radius:20px;overflow:hidden;margin-bottom:22px}.bar span{display:block;height:100%;background:linear-gradient(90deg,var(--mint),var(--cyan));border-radius:20px}
+.lesson-heading{display:flex;align-items:center;gap:12px}.lesson-heading .lesson-art{width:55px;height:55px;border-radius:17px;display:grid;place-items:center;font-size:26px;background:#42d7e817;color:var(--cyan)}.lesson-heading h2{font-size:23px;margin:0}.lesson-heading small{color:var(--muted)}
+.lesson-text{font-size:14px;line-height:2.15;color:#d1e0e9;margin:18px 0}.concept{border-right:3px solid var(--cyan);background:#42d7e811;padding:14px 17px;border-radius:12px;line-height:1.9;font-size:13px;margin:16px 0}.example-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:16px}.example-tile{background:#ffffff08;border:1px solid var(--border);border-radius:14px;padding:13px}.example-tile span{font-size:22px}.example-tile b{display:block;font-size:12px;margin-top:5px}.example-tile small{color:var(--muted);font-size:10px}
+.lesson-footer{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:23px}
+.quiz-card{max-width:760px;margin:auto;background:linear-gradient(145deg,#112c3e,#0c2030);border:1px solid var(--border);border-radius:22px;padding:clamp(18px,4vw,30px)}
+.quiz-kicker{color:var(--cyan);font-size:11px;font-weight:900}.quiz-question{font-size:21px;line-height:1.8;margin:10px 0 20px}.answers{display:grid;gap:10px}.answer{padding:14px 16px;text-align:right;color:var(--white);background:#ffffff08;border:1px solid var(--border);border-radius:13px;font-size:13px;transition:.18s}.answer:hover{border-color:var(--cyan);background:#42d7e811}.answer.correct{border-color:var(--mint);background:#50d6b01c}.answer.wrong{border-color:var(--rose);background:#ff8e911c}.feedback{min-height:30px;margin-top:13px;font-size:12px;font-weight:800;color:var(--amber)}
+.result{text-align:center;padding:30px 15px}.result .medal{font-size:65px}.result h2{font-size:27px}.result p{color:var(--muted);line-height:2;font-size:13px}.reward{color:var(--amber);font-size:27px;font-weight:900;margin:15px}
+.achievement-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.achievement{border:1px solid var(--border);background:#102638;border-radius:16px;padding:17px;text-align:center}.achievement .badge-icon{font-size:30px;filter:grayscale(1);opacity:.35}.achievement.unlocked .badge-icon{filter:none;opacity:1}.achievement b{display:block;font-size:12px;margin-top:8px}.achievement small{font-size:10px;color:var(--muted)}
+.settings-row{display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid var(--border);gap:15px}.settings-row:last-child{border:0}.settings-row b{font-size:13px}.settings-row small{display:block;color:var(--muted);font-size:10px}
+.empty{color:var(--muted);font-size:12px;text-align:center;padding:25px}
+.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;background:#173b4c;border:1px solid #42d7e866;border-radius:13px;padding:11px 17px;z-index:20;transition:.2s;font-size:12px;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}
+.modal-bg{position:fixed;inset:0;background:#020811cc;display:none;place-items:center;padding:18px;z-index:30}.modal-bg.show{display:grid}.modal{max-width:420px;width:100%;padding:24px;border-radius:20px;background:#142e40;border:1px solid var(--border);text-align:center}.modal p{color:var(--muted);font-size:12px;line-height:2}.modal-actions{display:flex;justify-content:center;gap:10px;margin-top:15px}
+.mobile-nav{display:none}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{display:none}.mobile-nav{display:flex;position:fixed;bottom:10px;left:10px;right:10px;z-index:15;background:#102638f2;border:1px solid var(--border);border-radius:18px;padding:7px;justify-content:space-around;backdrop-filter:blur(14px)}.mobile-nav button{border:0;background:none;color:var(--muted);font-size:10px;display:grid;gap:3px;justify-items:center}.mobile-nav button span{font-size:19px}.shell{padding:12px 13px 95px}}
+@media(max-width:650px){.top{height:auto;padding:8px 0 14px;align-items:flex-start}.top-right{gap:5px;flex-wrap:wrap;justify-content:flex-end}.pill{font-size:10px;padding:7px 9px}.brand strong{font-size:16px}.brand-mark{width:39px;height:39px}.welcome{padding:20px;min-height:175px}.guide{min-width:0;gap:7px}.guide-bot{width:60px;height:66px;font-size:32px}.guide-speech{font-size:10px;max-width:100px}.welcome p{font-size:11px}.stats-grid{grid-template-columns:repeat(2,1fr);gap:8px}.metric{padding:11px}.metric strong{font-size:19px}.worlds{grid-template-columns:1fr}.example-grid{grid-template-columns:1fr}.achievement-grid{grid-template-columns:repeat(2,1fr)}.continue-card{align-items:flex-start;flex-direction:column}.path-wrap{padding:15px}.node-button{width:57px;height:57px;border-radius:19px}.node-info{padding:8px 10px}.lesson-heading h2{font-size:18px}.quiz-question{font-size:18px}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="top">
+ <div class="brand"><div class="brand-mark">A</div><div><strong>ALAA ZONE</strong><small>THE AI ADVENTURE</small></div></div>
+ <div class="top-right">
+  <div class="pill">🪙 <b id="coins">120</b></div><div class="pill">⚡ <b id="xp">0</b> XP</div><div class="pill">🔥 <b id="streak">1</b></div><div class="avatar">👤</div>
+ </div>
+</header>
+<div class="layout">
+<aside class="sidebar">
+ <div class="profile"><div class="face">🎮</div><div><b>مستكشف الذكاء</b><small>رحلتك بدأت للتو</small></div></div>
+ <nav class="nav">
+  <button class="active" data-view="dashboard" onclick="navigate('dashboard')"><span class="ico">⌂</span>الرئيسية</button>
+  <button data-view="map" onclick="navigate('map')"><span class="ico">🗺️</span>خريطة المغامرة</button>
+  <button data-view="achievements" onclick="navigate('achievements')"><span class="ico">🏆</span>الإنجازات</button>
+  <button data-view="profile" onclick="navigate('profile')"><span class="ico">👤</span>ملفي</button>
+ </nav>
+</aside>
+<main class="content">
+<section id="dashboard" class="view active">
+ <div class="welcome">
+  <div class="welcome-copy"><div class="tag">مرحبًا بك في عالم جديد ✦</div><h1>مستعد تبدأ المغامرة؟</h1><p>اكتشف أسرار الذكاء الاصطناعي، افتح مناطق جديدة، واجمع الخبرة لتصبح من خبراء ALAA ZONE.</p></div>
+  <div class="guide"><div class="guide-bot">🤖</div><div class="guide-speech">أهلًا! أنا علاء، وهكون معاك في كل خطوة.</div></div>
+ </div>
+ <div class="stats-grid">
+  <div class="metric"><div class="metric-top"><span>مستوى اللاعب</span><span class="symbol">🎖️</span></div><strong id="playerLevel">1</strong><small style="color:var(--muted)">مستكشف مبتدئ</small></div>
+  <div class="metric"><div class="metric-top"><span>نقاط الخبرة</span><span class="symbol">⚡</span></div><strong id="metricXP">0</strong><small style="color:var(--muted)">XP مكتسبة</small></div>
+  <div class="metric"><div class="metric-top"><span>المراحل المكتملة</span><span class="symbol">🚩</span></div><strong id="doneCount">0</strong><small style="color:var(--muted)">من 12 مرحلة تجريبية</small></div>
+  <div class="metric"><div class="metric-top"><span>العملات</span><span class="symbol">🪙</span></div><strong id="metricCoins">120</strong><small style="color:var(--muted)">رصيدك الحالي</small></div>
+ </div>
+ <div class="section-title"><div><h2>تابع مغامرتك</h2><p>المرحلة التالية في انتظارك</p></div><button class="text-btn" onclick="navigate('map')">عرض الخريطة ←</button></div>
+ <div class="continue-card"><div class="continue-info"><div class="continue-icon">🧠</div><div><h3 id="continueTitle">بوابة الذكاء الاصطناعي</h3><p id="continueSub">ابدأ أول مهمة وافتح طريقك إلى العالم</p></div></div><button class="btn primary" onclick="continueAdventure()">استمرار المغامرة ←</button></div>
+ <div class="section-title"><div><h2>العوالم المتاحة</h2><p>كل عالم يكشف جانبًا جديدًا من AI</p></div></div>
+ <div class="worlds" id="dashboardWorlds"></div>
+</section>
+
+<section id="map" class="view">
+ <div class="section-title"><div><h2>🗺️ خريطة المغامرة</h2><p>تحرك بين المناطق وافتح المراحل بالتدريج</p></div><span class="pill">12 مهمة تجريبية</span></div>
+ <div class="path-wrap"><div class="path-head"><div><h2 id="mapWorldName">منطقة البداية</h2><p id="mapWorldDesc">ابدأ من هنا وتعلم الأساسيات</p></div><div class="pill">🌐 عالم 01</div></div><div class="path" id="path"></div></div>
+</section>
+
+<section id="lesson" class="view">
+ <button class="text-btn" onclick="navigate('map')" style="margin-bottom:14px">→ العودة إلى الخريطة</button>
+ <div class="lesson-card">
+  <div class="lesson-meta"><span id="lessonWorld">منطقة البداية</span><span id="lessonCount">الدرس 1 من 3</span></div><div class="bar"><span id="lessonBar" style="width:30%"></span></div>
+  <div class="lesson-heading"><div class="lesson-art" id="lessonIcon">🧠</div><div><h2 id="lessonTitle">ما هو الذكاء الاصطناعي؟</h2><small>مركز المعرفة · درس تفاعلي</small></div></div>
+  <div class="lesson-text" id="lessonText"></div><div class="concept" id="lessonConcept"></div>
+  <div class="example-grid" id="lessonExamples"></div>
+  <div class="lesson-footer"><span style="color:var(--muted);font-size:11px">📚 اقرأ وافهم قبل التحدي</span><button class="btn primary" onclick="beginChallenge()">أنا جاهز للتحدي ←</button></div>
+ </div>
+</section>
+
+<section id="challenge" class="view">
+ <button class="text-btn" onclick="navigate('map')" style="margin-bottom:14px">→ العودة إلى الخريطة</button>
+ <div class="quiz-card">
+  <div class="lesson-meta"><span class="quiz-kicker">MISSION CHALLENGE</span><span id="challengeNumber">المهمة 01</span></div>
+  <div class="bar"><span id="challengeBar" style="width:60%"></span></div>
+  <div class="lesson-heading"><div class="lesson-art">🎯</div><div><h2>اختبر مهاراتك</h2><small>اختر القرار أو الإجابة الأفضل</small></div></div>
+  <div class="quiz-question" id="question"></div><div class="answers" id="answers"></div><div class="feedback" id="feedback"></div>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:15px;gap:10px"><span style="color:var(--muted);font-size:10px">مكافأة المهمة: 100 عملة + 50 XP</span><button class="btn primary" id="nextChallenge" style="display:none" onclick="completeMission()">استلام المكافأة ←</button></div>
+ </div>
+</section>
+
+<section id="result" class="view"><div class="lesson-card result"><div class="medal">🏅</div><h2 id="resultTitle">مهمة مكتملة!</h2><p id="resultMessage">لقد أنهيت المهمة بنجاح.</p><div class="reward" id="resultReward">+100 🪙 &nbsp; +50 XP</div><button class="btn primary" onclick="navigate('map')">العودة إلى الخريطة</button></div></section>
+
+<section id="achievements" class="view">
+ <div class="section-title"><div><h2>🏆 قاعة الإنجازات</h2><p>كل خطوة تقربك من لقب خبير الذكاء الاصطناعي</p></div></div><div class="achievement-grid" id="achievementGrid"></div>
+</section>
+<section id="profile" class="view">
+ <div class="section-title"><div><h2>👤 ملف اللاعب</h2><p>إحصائيات رحلتك التعليمية</p></div></div>
+ <div class="lesson-card"><div class="settings-row"><div><b>رتبتك الحالية</b><small>تتطور مع نقاط الخبرة</small></div><strong id="profileRank">مستكشف مبتدئ</strong></div><div class="settings-row"><div><b>إجمالي نقاط الخبرة</b><small>XP</small></div><strong id="profileXP">0</strong></div><div class="settings-row"><div><b>المهام المكتملة</b><small>تقدمك في المغامرة</small></div><strong id="profileDone">0</strong></div><div class="settings-row"><div><b>رصيد العملات</b><small>تستخدم لشراء المساعدات مستقبلًا</small></div><strong id="profileCoins">120</strong></div><div class="settings-row"><div><b>إعادة ضبط التقدم</b><small>سيتم حذف تقدمك المحلي الحالي</small></div><button class="btn danger" onclick="resetProgress()">إعادة ضبط</button></div></div>
+</section>
+</main>
+</div>
+<nav class="mobile-nav"><button onclick="navigate('dashboard')"><span>⌂</span>الرئيسية</button><button onclick="navigate('map')"><span>🗺️</span>الخريطة</button><button onclick="navigate('achievements')"><span>🏆</span>الإنجازات</button><button onclick="navigate('profile')"><span>👤</span>ملفي</button></nav>
+</div>
+<div class="toast" id="toast"></div>
+<div class="modal-bg" id="modal"><div class="modal"><h3 id="modalTitle">تأكيد</h3><p id="modalText"></p><div class="modal-actions"><button class="btn primary" id="modalOK">تأكيد</button><button class="btn secondary" onclick="closeModal()">إلغاء</button></div></div></div>
+<script>
+const worlds=[
+ {name:"منطقة الاكتشاف",desc:"افهم أساسيات الذكاء الاصطناعي",icon:"🧠",color:"linear-gradient(120deg,#176d7d,#234d83)",missions:[
+  {title:"بوابة الذكاء الاصطناعي",type:"تعلم الأساسيات",icon:"🧠",text:"الذكاء الاصطناعي مجال من علوم الكمبيوتر يهدف إلى بناء أنظمة تستطيع تنفيذ مهام تتطلب عادةً قدرات بشرية، مثل فهم اللغة والتعرف على الصور والتعلم من البيانات.",concept:"الفكرة الأساسية: الذكاء الاصطناعي لا يعني أن الجهاز أصبح إنسانًا؛ بل يعني أنه ينفذ مهام محددة بطرق ذكية اعتمادًا على نماذج وبيانات.",examples:[["📱","الهاتف الذكي","التعرف على الصور"],["🎬","منصات الفيديو","اقتراح محتوى"],["🗣️","المساعد الصوتي","فهم الأوامر"]],q:"أي مثال يمثل استخدامًا للذكاء الاصطناعي؟",a:["تطبيق يتعرف على الأشياء داخل الصور","مصباح يعمل بمفتاح عادي","دفتر ورقي لتسجيل الملاحظات"],correct:0,why:"التعرف على محتوى الصور من تطبيقات الذكاء الاصطناعي."},
+  {title:"كيف تتعلم الآلة؟",type:"مهمة تحليل",icon:"📊",text:"تتعلم بعض أنظمة الذكاء الاصطناعي من أمثلة كثيرة. تبحث عن أنماط مشتركة في البيانات، ثم تستخدم ما تعلمته للتعامل مع بيانات جديدة.",concept:"تعلم الآلة فرع من الذكاء الاصطناعي. جودة البيانات وتنوعها يؤثران في جودة النتائج، لذلك نحتاج إلى اختبار النظام ومراجعة أدائه.",examples:[["🖼️","صور كثيرة","أمثلة للتدريب"],["🔍","اكتشاف نمط","تحليل البيانات"],["✨","نتيجة متوقعة","تجربة النموذج"]],q:"درّبت نظامًا على صور قطط وكلاب. ما الذي يساعده على التمييز بينها؟",a:["تحليل الأنماط في أمثلة التدريب","لون شاشة الكمبيوتر","عدد أزرار لوحة المفاتيح"],correct:0,why:"يتعلم النموذج الأنماط والسمات الموجودة في أمثلة التدريب."},
+  {title:"الذكاء الاصطناعي والإنسان",type:"مهمة تفكير",icon:"🤝",text:"الذكاء الاصطناعي يستطيع المساعدة في مهام كثيرة، لكنه لا يمتلك بالضرورة الفهم والخبرة الإنسانية نفسها. الإنسان يحدد الهدف ويراجع النتائج ويتحمل مسؤولية القرارات.",concept:"أفضل استخدام للتقنية هو التعاون: يستفيد الإنسان من سرعة الأدوات، ويضيف التفكير والحكم والسياق والمراجعة.",examples:[["🧑‍🏫","المعلم","يوجه عملية التعلم"],["🤖","النظام","يقترح تدريبات"],["✅","الطالب","يفهم ويتحقق"]],q:"ما التصرف الأفضل عند استخدام أداة AI في واجب مدرسي؟",a:["أستخدمها للفهم ثم أراجع وأكتب بأسلوبي","أنسخ الإجابة دون قراءتها","أعتبر كل ما تقوله صحيحًا"],correct:0,why:"استخدم الأداة للتعلم، وراجع المعلومات، وقدم عملك بفهمك."}
+ ]},
+ {name:"مدينة التطبيقات",desc:"اكتشف تأثير AI في المجتمع",icon:"🌆",color:"linear-gradient(120deg,#176c58,#286e83)",missions:[
+  {title:"مستقبل التعليم",type:"مهمة تعليمية",icon:"🎓",text:"يمكن للذكاء الاصطناعي مساعدة الطلاب في شرح المفاهيم وتقديم تدريبات تناسب احتياجاتهم. ويظل المعلم والتفاعل الإنساني عنصرين أساسيين في التعليم.",concept:"التقنية أداة مساعدة وليست بديلًا عن المعلم أو مجهود الطالب.",examples:[["📚","شرح إضافي","تبسيط فكرة"],["🧩","تدريب مخصص","ممارسة مهارة"],["🌍","ترجمة","فهم لغات"]],q:"من أفضل استخدامات AI في التعليم؟",a:["اقتراح تدريبات تناسب مستوى الطالب","إلغاء دور المعلم تمامًا","منع الطالب من التفكير"],correct:0,why:"يمكن أن يقدم تدريبًا مخصصًا، مع بقاء دور المعلم والطالب."},
+  {title:"الطب الذكي",type:"مهمة اتخاذ قرار",icon:"🩺",text:"تساعد بعض الأنظمة المختصين في تحليل الصور الطبية وتنظيم البيانات واكتشاف أنماط تستحق الفحص. هذه الأدوات لا تحل محل التشخيص والمسؤولية الطبية.",concept:"في القرارات الصحية المهمة، يجب الرجوع إلى المختص وعدم الاعتماد على أداة آلية وحدها.",examples:[["🩻","صور طبية","تحليل مساعد"],["📈","بيانات","ملاحظة أنماط"],["👩‍⚕️","المختص","يراجع القرار"]],q:"من المسؤول عن القرار الطبي النهائي؟",a:["الطبيب أو المختص المؤهل","برنامج الذكاء الاصطناعي وحده","أي مستخدم للتطبيق"],correct:0,why:"النظام يقدم مساعدة، لكن المختص المؤهل يراجع ويتخذ القرار."},
+  {title:"الزراعة والصناعة",type:"مهمة استكشاف",icon:"🌱",text:"يمكن استخدام الذكاء الاصطناعي لمتابعة المحاصيل، وتحليل بيانات الطقس والتربة، ومراقبة جودة المنتجات في المصانع، مما يساعد على تحسين التخطيط.",concept:"تحليل البيانات قد يساعد على توفير الموارد وتقليل الهدر، لكنه يحتاج إلى بيانات مناسبة ومراجعة بشرية.",examples:[["🌾","الزراعة","متابعة المحاصيل"],["🏭","الصناعة","مراقبة الجودة"],["🚚","النقل","تخطيط المسارات"]],q:"أي استخدام يناسب الزراعة الذكية؟",a:["تحليل بيانات التربة وصور المحاصيل","اختيار لون شعار المصنع","تشغيل راديو المزرعة"],correct:0,why:"تحليل بيانات التربة والمحاصيل قد يساعد المزارع في اتخاذ قرارات أفضل."}
+ ]},
+ {name:"مختبر الأخلاقيات",desc:"تعلم الاستخدام الآمن والمسؤول",icon:"🛡️",color:"linear-gradient(120deg,#65519e,#365b91)",missions:[
+  {title:"حماية الخصوصية",type:"مهمة أمان",icon:"🔐",text:"الخصوصية تعني التعامل بحذر مع المعلومات الشخصية. قبل مشاركة أي بيانات مع خدمة رقمية، افهم ما الذي تطلبه ولماذا وكيف ستستخدمه.",concept:"لا تشارك كلمات المرور أو العناوين أو المستندات الحساسة مع أدوات لا تعرف طريقة تعاملها مع البيانات.",examples:[["🔒","كلمة المرور","لا تشاركها"],["📄","مستند شخصي","تحقق قبل رفعه"],["⚙️","إعدادات الخصوصية","راجع الأذونات"]],q:"طلب منك موقع غير معروف إدخال كلمة مرور حسابك. ماذا تفعل؟",a:["لا أشاركها وأتحقق من موثوقية الموقع","أرسلها فورًا","أنشرها في التعليقات"],correct:0,why:"كلمات المرور معلومات حساسة ويجب عدم مشاركتها مع مواقع غير موثوقة."},
+  {title:"العدالة والتحيز",type:"مهمة تحليل",icon:"⚖️",text:"قد تعكس نتائج الذكاء الاصطناعي تحيزات موجودة في بيانات التدريب. لذلك يجب اختبار الأنظمة على حالات متنوعة ومراجعة النتائج باستمرار.",concept:"العدالة تتطلب بيانات ممثلة ومراجعة بشرية، وعدم افتراض أن النظام محايد لمجرد أنه برنامج.",examples:[["📚","بيانات متنوعة","تمثيل أفضل"],["🔎","اختبار","اكتشاف التحيز"],["⚖️","مراجعة","تحسين الإنصاف"]],q:"ما الذي يساعد على تقليل التحيز في أنظمة AI؟",a:["اختبار النظام على بيانات متنوعة ومراجعة نتائجه","تجاهل الشكاوى","استخدام عينة واحدة فقط"],correct:0,why:"التنوع والاختبار والمراجعة تساعد على كشف التحيز وتقليله."},
+  {title:"المسؤولية الرقمية",type:"مهمة قرار",icon:"🧭",text:"الاستخدام المسؤول يعني التفكير في أثر التقنية، والتحقق من المعلومات، واحترام حقوق الآخرين، وعدم استخدام أدوات الذكاء الاصطناعي للإضرار أو التضليل.",concept:"اسأل نفسك دائمًا: هل المعلومة صحيحة؟ هل أحترم خصوصية الآخرين؟ هل أوضح استخدام AI عندما يكون ذلك مهمًا؟",examples:[["✔️","تحقق","راجع المصادر"],["🤝","احترام","حقوق الآخرين"],["💡","شفافية","وضح استخدام الأداة"]],q:"استخدمت AI لإنشاء صورة لمشروع. ما التصرف المسؤول؟",a:["أوضح استخدام الأداة وأحترم حقوق المحتوى","أنسب عمل الآخرين لنفسي","أستخدم الصورة دون التحقق من حقوقها"],correct:0,why:"الشفافية واحترام الحقوق جزء من الاستخدام المسؤول."}
+ ]},
+ {name:"منطقة المستقبل",desc:"وازن بين الفرص والتحديات",icon:"🚀",color:"linear-gradient(120deg,#9a6438,#805080)",missions:[
+  {title:"قوة الذكاء الاصطناعي",type:"مهمة ابتكار",icon:"⚡",text:"يمكن للذكاء الاصطناعي تسريع تحليل البيانات، والمساعدة في البحث، وتسهيل بعض المهام المتكررة، ودعم الإبداع والتعلم.",concept:"الفائدة تعتمد على المهمة وجودة النظام وطريقة استخدام الإنسان له؛ ولا تعني السرعة أن النتيجة دقيقة دائمًا.",examples:[["⏱️","توفير الوقت","مهام متكررة"],["📊","تحليل","بيانات كثيرة"],["🔬","بحث","دعم الاكتشاف"]],q:"ما إحدى فوائد الذكاء الاصطناعي؟",a:["المساعدة في تحليل كميات كبيرة من البيانات","ضمان عدم حدوث أخطاء مطلقًا","إلغاء الحاجة للخبراء"],correct:0,why:"يساعد AI في التحليل، لكن النتائج تحتاج إلى تقييم."},
+  {title:"التحديات والمخاطر",type:"مهمة تقييم",icon:"⚠️",text:"من تحديات الذكاء الاصطناعي إنتاج معلومات غير دقيقة، أو انتهاك الخصوصية، أو التحيز، أو الاعتماد المفرط عليه. فهم هذه التحديات يساعدنا على استخدامه بحكمة.",concept:"لا تتعامل مع مخرجات AI باعتبارها حقيقة مؤكدة. قارنها بمصادر موثوقة، خصوصًا في الموضوعات المهمة.",examples:[["❓","معلومة خاطئة","تحقق منها"],["🔓","خصوصية","احمِ بياناتك"],["⚖️","تحيز","راجع النتائج"]],q:"قدمت أداة AI معلومة مهمة دون مصدر. ماذا تفعل؟",a:["أتحقق منها من مصادر موثوقة","أنشرها فورًا","أفترض أنها صحيحة لأنها مكتوبة بثقة"],correct:0,why:"الثقة في أسلوب الإجابة لا تضمن صحتها."},
+  {title:"مصمم المستقبل",type:"المهمة النهائية",icon:"🏆",text:"أصبحت تعرف أساسيات الذكاء الاصطناعي وتطبيقاته وأخلاقياته وفوائده وتحدياته. الآن فكر كيف يمكن أن تستخدم هذه المعرفة لصناعة أثر إيجابي.",concept:"المستخدم المتميز لا يعرف الأدوات فقط؛ بل يعرف متى يستخدمها، وكيف يتحقق من نتائجها، ومتى يحتاج إلى حكم الإنسان.",examples:[["🧠","فهم","اعرف حدود التقنية"],["🛠️","تطبيق","اختر الأداة المناسبة"],["🌟","أثر","استخدمها بإيجابية"]],q:"ما الذي يميز المستخدم المسؤول للذكاء الاصطناعي؟",a:["يفهم قدراته وحدوده ويتحقق من نتائجه","يعتمد عليه في كل قرار","يشارك كل بياناته معه"],correct:0,why:"الفهم والتحقق والوعي بالحدود هي أساس الاستخدام الجيد."}
+ ]}
+];
+const achievements=[["🌱","البداية","أكمل أول مهمة",s=>s.completed.length>=1],["🧭","مستكشف","أكمل 3 مهام",s=>s.completed.length>=3],["🧠","عقل متطور","اجمع 150 XP",s=>s.xp>=150],["🏙️","فاتح العوالم","أكمل عالمًا كاملًا",s=>worlds.some((w,i)=>w.missions.every((m,j)=>s.completed.includes(i+"-"+j)))],["⚡","جامع الخبرة","اجمع 300 XP",s=>s.xp>=300],["🏆","خبير ALAA","أكمل 12 مهمة",s=>s.completed.length>=12]];
+const fresh={coins:120,xp:0,completed:[],unlocked:0};
+let state;try{state={...fresh,...JSON.parse(localStorage.getItem("alaaZonePro")||"{}")}}catch(e){state={...fresh}}
+let activeWorld=0,activeMission=0,answered=false;
+const $=id=>document.getElementById(id);
+function save(){localStorage.setItem("alaaZonePro",JSON.stringify(state));refresh()}
+function rank(){return state.xp>=500?"خبير الذكاء الاصطناعي":state.xp>=250?"مبتكر رقمي":state.xp>=100?"متعلم متقدم":"مستكشف مبتدئ"}
+function refresh(){
+ $("coins").textContent=state.coins;$("xp").textContent=state.xp;$("streak").textContent=1+Math.floor(state.completed.length/3);
+ $("metricXP").textContent=state.xp;$("metricCoins").textContent=state.coins;$("doneCount").textContent=state.completed.length;$("playerLevel").textContent=1+Math.floor(state.xp/100);
+ $("profileRank").textContent=rank();$("profileXP").textContent=state.xp;$("profileDone").textContent=state.completed.length;$("profileCoins").textContent=state.coins;
+ const next=findNext();$("continueTitle").textContent=next?worlds[next.w].missions[next.m].title:"اكتملت المغامرة!";$("continueSub").textContent=next?worlds[next.w].name+" · "+worlds[next.w].missions[next.m].type:"أحسنت، أنهيت جميع المهام التجريبية";
+ renderWorldCards();renderAchievements();
+}
+function findNext(){for(let w=0;w<worlds.length;w++)for(let m=0;m<worlds[w].missions.length;m++)if(!state.completed.includes(w+"-"+m))return{w,m};return null}
+function navigate(id){
+ document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));$(id).classList.add("active");
+ document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.view===id));
+ if(id==="map")renderMap();if(id==="dashboard")renderWorldCards();if(id==="achievements")renderAchievements();refresh();window.scrollTo({top:0,behavior:"smooth"});
+}
+function renderWorldCards(){
+ const holder=$("dashboardWorlds");holder.innerHTML="";
+ worlds.forEach((w,i)=>{const done=w.missions.filter((m,j)=>state.completed.includes(i+"-"+j)).length;const el=document.createElement("div");el.className="world";
+ el.innerHTML=`<div class="world-banner" style="background:${w.color}"><span class="world-number">ZONE 0${i+1}</span><span class="world-symbol">${w.icon}</span></div><div class="world-body"><h3>${w.name}</h3><p>${w.desc}</p><div class="world-bottom"><small>${done} / ${w.missions.length} مهام مكتملة</small><button class="btn secondary" onclick="openWorld(${i})">استكشف ←</button></div></div>`;holder.appendChild(el)});
+}
+function renderMap(){
+ const next=findNext();const w=next?next.w:worlds.length-1;
+ $("mapWorldName").textContent=worlds[w].name;$("mapWorldDesc").textContent=worlds[w].desc;
+ const p=$("path");p.innerHTML="";
+ worlds.forEach((world,wi)=>{
+  const title=document.createElement("div");title.style.cssText="width:100%;text-align:center;color:var(--cyan);font-size:12px;font-weight:900;margin:20px 0 3px;position:relative;z-index:2";title.textContent="✦ "+world.name+" ✦";p.appendChild(title);
+  world.missions.forEach((m,mi)=>{
+   const done=state.completed.includes(wi+"-"+mi),isNext=next&&next.w===wi&&next.m===mi,unlocked=done||isNext;
+   const row=document.createElement("div");row.className="path-node";
+   const b=document.createElement("button");b.className="node-button "+(done?"done":isNext?"current":"");b.textContent=done?"✓":m.icon;b.disabled=!unlocked;b.title=m.title;if(unlocked)b.onclick=()=>openMission(wi,mi);
+   const info=document.createElement("div");info.className="node-info";info.innerHTML=`<b>${m.title}</b><small>${m.type} · ${done?"مكتملة":isNext?"متاحة الآن":"أكمل المهمة السابقة لفتحها"}</small>`;
+   row.append(b,info);p.appendChild(row);
+  });
+ });
+}
+function openWorld(i){const next=findNext();if(next&&i>next.w){toast("أكمل مهام المنطقة الحالية أولًا 🔒");return;}navigate("map");}
+function openMission(w,m){const key=w+"-"+m;if(state.completed.includes(key)){toast("أنهيت هذه المهمة بالفعل!");return;}const next=findNext();if(!next||next.w!==w||next.m!==m){toast("أكمل المهمة السابقة أولًا 🔒");return;}activeWorld=w;activeMission=m;const d=worlds[w],x=d.missions[m];$("lessonWorld").textContent=d.name;$("lessonCount").textContent=`المهمة ${m+1} من ${d.missions.length}`;$("lessonBar").style.width=((m+1)/d.missions.length*100)+"%";$("lessonIcon").textContent=x.icon;$("lessonTitle").textContent=x.title;$("lessonText").textContent=x.text;$("lessonConcept").textContent=x.concept;$("lessonExamples").innerHTML=x.examples.map(e=>`<div class="example-tile"><span>${e[0]}</span><b>${e[1]}</b><small>${e[2]}</small></div>`).join("");navigate("lesson");}
+function continueAdventure(){const n=findNext();if(n)openMission(n.w,n.m);else{toast("أنهيت جميع المهام! 🏆");navigate("achievements")}}
+function beginChallenge(){
+ const x=worlds[activeWorld].missions[activeMission];answered=false;$("question").textContent=x.q;$("feedback").textContent="";$("nextChallenge").style.display="none";$("challengeNumber").textContent=`ZONE 0${activeWorld+1} · MISSION 0${activeMission+1}`;$("challengeBar").style.width="100%";
+ $("answers").innerHTML="";x.a.forEach((answer,i)=>{const b=document.createElement("button");b.className="answer";b.textContent=answer;b.onclick=()=>chooseAnswer(i,b);$("answers").appendChild(b)});navigate("challenge");
+}
+function chooseAnswer(i,btn){
+ if(answered)return;answered=true;const x=worlds[activeWorld].missions[activeMission];const all=[...document.querySelectorAll(".answer")];all.forEach(b=>b.disabled=true);
+ if(i===x.correct){btn.classList.add("correct");$("feedback").textContent="إجابة ممتازة! "+x.why;$("nextChallenge").textContent="إنهاء المهمة واستلام المكافأة ←";}
+ else{btn.classList.add("wrong");all[x.correct].classList.add("correct");$("feedback").textContent="مش مشكلة! "+x.why;$("nextChallenge").textContent="فهمت، إنهاء المهمة ←";}
+ $("nextChallenge").style.display="inline-block";
+}
+function completeMission(){
+ const key=activeWorld+"-"+activeMission;if(state.completed.includes(key))return;
+ state.completed.push(key);state.coins+=100;state.xp+=50;save();
+ $("resultTitle").textContent="تم إنجاز المهمة!";$("resultMessage").textContent="أحسنت! كل مهمة تكملها تفتح لك معرفة جديدة وتقربك من لقب خبير الذكاء الاصطناعي.";
+ $("resultReward").textContent="+100 🪙   +50 XP";navigate("result");
+}
+function renderAchievements(){
+ $("achievementGrid").innerHTML=achievements.map(a=>{const yes=a[3](state);return `<div class="achievement ${yes?"unlocked":""}"><div class="badge-icon">${a[0]}</div><b>${a[1]}</b><small>${yes?"تم فتح الإنجاز":a[2]}</small></div>`}).join("");
+}
+function resetProgress(){showModal("إعادة ضبط التقدم","هل أنت متأكد؟ سيتم حذف العملات والخبرة والمهام المكتملة من هذا المتصفح.",()=>{state={...fresh,completed:[]};save();navigate("dashboard");toast("تمت إعادة ضبط التقدم")})}
+function showModal(title,text,yes){$("modalTitle").textContent=title;$("modalText").textContent=text;$("modal").classList.add("show");$("modalOK").onclick=()=>{$("modal").classList.remove("show");yes()}}
+function closeModal(){$("modal").classList.remove("show")}
+function toast(t){$("toast").textContent=t;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),2300)}
+renderWorldCards();refresh();
+</script>
+</body></html>
